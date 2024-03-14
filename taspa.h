@@ -1,6 +1,7 @@
 #ifndef TASPA_H
 #define TASPA_H
 #include <QVector>
+#include <queue>
 
 struct tasktype
 {
@@ -11,7 +12,7 @@ struct tasktype
     int out;          // 出度
     int order;        // 执行顺序
     int sameprivalue; // 同样优先级值处理
-
+    int softorhard;
 };
 
 
@@ -29,12 +30,18 @@ public:
     std::vector<int> O;
     std::vector<int> MaxOpRiFlag;
     std::vector<tasktype> task;
+//    std::vector<tasktype> tasktable;
+    std::vector<tasktype> tasktable;
     int MaxOpri(int i);
     void order_output();
     void task_init();
     void out_calculate();
     void order_calculate();
+    void out_calculatehaspa();
+    void RunHaspa();
+    int MaxOprihaspa(int i);
     int MAX;
+    int resize(int max);
 };
 
 #endif // TASPA_H

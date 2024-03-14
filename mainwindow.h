@@ -40,6 +40,39 @@ private slots:
 
     void on_pushButton_10_clicked();
 
+    void on_actionKL_triggered();
+
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_actionHaspa_triggered();
+
+    void on_pushButton_7_clicked();
+
+    void resizeEvent(QResizeEvent *event);
+    void on_actionHaspa_critical_triggered();
+
+    void on_pushButton_22_clicked();
+
+    void on_pushButton_23_clicked();
+
+    void on_actionESHC_triggered();
+
+    void on_pushButton_24_clicked();
+
+    void on_pushButton_25_clicked();
+
+    void on_pushButton_26_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_actionHaspa_GA_triggered();
+
+    void on_pushButton_29_clicked();
+
+    void on_pushButton_30_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

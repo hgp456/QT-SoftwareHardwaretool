@@ -12,6 +12,8 @@ public:
     void clusterarrayinit();
     QString result_print();
     void Run();
+    void Run_MMMCAA();
+    void Run_MMMAAA();
     int Kc_init();
     int TASKNUM;
     std::vector<std::vector<int>> Kc;

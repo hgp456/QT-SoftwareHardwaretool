@@ -1,15 +1,17 @@
 #include "muppa.h"
 //#include <QVector>
 #include "QDebug"
+#include <QString>
+#include "ganntplot.h"
 muppa::muppa(int max):t(max)
 {
     MAX=max;
     time=0;
     task.resize(max);
-    taskTable.resize(max);
     core.resize(max);
     for(int i=0;i<max;i++)
     task[i].relyFunction.resize(max);
+    Ganntinfo.resize(max);
 }
 
 void muppa::core_init()
@@ -78,16 +80,19 @@ int muppa::order_print()
             if(task[j].order==i)
             {
                 taskTable.push_back(task[j].num-1);
+//                qDebug()<<task[j].num-1;
             }
         }
     }
+
     return 0;
 }
 
 int muppa::Scheduling()
 {
     int allstatus=BUSY;
-    while(allstatus==BUSY)
+    int infocount=0;
+    while(1)
     {
         allstatus=IDLE;
         for(int i=0;i<CORENUM;i++)
@@ -96,7 +101,7 @@ int muppa::Scheduling()
             {
                 core[i].busytime++;
                 task[core[i].runningtask].value--;
-                if(task[core[i].runningtask].value<0)
+                if(task[core[i].runningtask].value<=0)
                 {
                     task[core[i].runningtask].finish=true;
                     core[i].finishjob.push_back(core[i].runningtask);
@@ -106,15 +111,27 @@ int muppa::Scheduling()
         }
         for(int i=0;i<CORENUM;i++)
         {
-            if(core[i].status==IDLE&&!taskTable.empty())//空闲且不为空
+            if(core[i].status==IDLE)//空闲且不为空
             {
                 for(int taskNumNow=0;taskNumNow<taskTable.size();taskNumNow++)
                 {
-                    if(RelyFinish(taskTable[taskNumNow])==true && task[taskTable[taskNumNow]].finish==false &&task[taskTable[taskNumNow]].running==false)
+                    if( RelyFinish(taskTable[taskNumNow])==true
+                        && task[taskTable[taskNumNow]].finish==false
+                        &&task[taskTable[taskNumNow]].running==false
+                        &&time>=task[taskTable[taskNumNow]].retime
+                        )
                     {
+//                            qDebug()<<taskTable[taskNumNow];
+
                             core[i].runningtask=taskTable[taskNumNow];
                             task[taskTable[taskNumNow]].running=true;
                             core[i].status=BUSY;
+
+                            Ganntinfo[infocount].coreNumber=i;
+                            Ganntinfo[infocount].taskNumber=taskTable[taskNumNow];
+                            Ganntinfo[infocount].startTime=time;
+                            Ganntinfo[infocount].duration=task[taskTable[taskNumNow]].value;
+                            infocount++;
                             break;
                     }
                 }
@@ -130,10 +147,20 @@ int muppa::Scheduling()
                 break;
             }
         }
-        if(allstatus==IDLE)
+        if(allstatus==IDLE&&infocount==taskTable.size())
             break;
         time++;
     }
+    QString coreinfomation;
+    int endtime=0;
+    for(int i=0;i<CORENUM-1;i++)
+    {
+        coreinfomation+="Core" +QString::number(i)+",";
+    }
+    coreinfomation+="Core" + QString::number(CORENUM-1);
+    endtime=time;
+    GanntPlot ganntplot;
+    ganntplot.GanntPlotFileWrite(coreinfomation,endtime,Ganntinfo);
     return 0;
 
 }
@@ -176,8 +203,15 @@ int muppa::Run()
     core_init();
     task_init();
     order_print();
+    rely_anas();
+    qDebug()<<"Test" << taskTable[0];
     Scheduling();
     result_output();
+
+//    Py_Initialize();
+//    PyObject* module = PyImport_ImportModule("test.py");
+//    PyObject* function = PyObject_GetAttrString(module, "test");
+//    PyObject_CallObject(function, NULL);
        //这里需要将 Taspa t装载进来
     return 0;
 }

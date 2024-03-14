@@ -17,6 +17,19 @@ Taspa::Taspa(int max)
     task.resize(max);
 }
 
+
+int Taspa::resize(int max)
+{
+    MAX=max;
+    val.resize(max,0);
+    Opri.resize(max, 0);
+    TempOpri1.resize(max, 0);
+    O.resize(max, 0);
+    MaxOpRiFlag.resize(max, 0);
+    Retime.resize(max, 0);
+    task.resize(max);
+}
+
 void Taspa::out_calculate()
 {
 //    qDebug() << O.size();
@@ -24,7 +37,11 @@ void Taspa::out_calculate()
     {
         for(int j=0;j<MAX;j++)
         {
-            O[i]+=array[i][j]; //!出度计算
+            if(array[i][j]!=0)
+            {
+                O[i]+=1;
+            }
+//            O[i]+=array[i][j]; //!出度计算
         }
         Opri[i]=O[i]+val[i];
     }
@@ -37,6 +54,63 @@ void Taspa::out_calculate()
         }
     }
 }
+
+
+int Taspa::MaxOprihaspa(int i)
+{
+    int temp=0;
+    int max=0;
+    if(O[i]==0)
+    {
+        MaxOpRiFlag[i]=1;
+        return Opri[i];
+    }
+    for(int j=0;j<MAX;j++)
+    {
+        if(array[i][j]!=0)
+        {
+            temp=MaxOprihaspa(j)+array[i][j];
+            if(max<temp)
+                max=temp;
+        }
+    }
+    if(MaxOpRiFlag[i]==0)
+    {
+        Opri[i]+=max;
+        MaxOpRiFlag[i]=1;
+    }
+    return Opri[i];
+}
+
+
+
+void Taspa::out_calculatehaspa()
+{
+    //    qDebug() << O.size();
+    for(int i=0;i<MAX;i++)
+    {
+        for(int j=0;j<MAX;j++)
+        {
+            if(array[i][j]!=0)
+            {
+                O[i]+=1;
+            }
+            //            O[i]+=array[i][j]; //!出度计算
+        }
+        Opri[i]=O[i]+val[i];
+    }
+    for(int i=0;i<MAX;i++) //!优先级值计算
+    {
+        if(O[i]!=0)
+        {
+            //            qDebug() << i;
+            MaxOprihaspa(i);
+        }
+    }
+}
+
+
+
 
 void Taspa::task_init()
 {
@@ -89,7 +163,7 @@ int Taspa::MaxOpri(int i)
     }
     for(int j=0;j<MAX;j++)
     {
-        if(array[i][j]==1)
+        if(array[i][j]!=0)
         {
             temp=MaxOpri(j);
             if(max<temp)
@@ -144,12 +218,15 @@ QString Taspa::order_print()
         {
             if(task[j].order==i)
             {
-                output += QString("J%1 %2 \n").arg(task[j].num).arg(task[j].privalue);
+                output += QString("J%1 %2 ").arg(task[j].num).arg(task[j].order);
+
+                tasktable.push_back(task[j]);
             }
         }
     }
-    return output;
 //    qDebug().noquote().nospace() << output;
+    return output;
+
 }
 
 
@@ -158,6 +235,16 @@ void Taspa::Run()
 //    qDebug() << "a";
     out_calculate();
 //    qDebug() << "b";
+    task_init();
+    order_calculate();
+    order_output();
+    order_print();
+}
+
+
+void Taspa::RunHaspa()
+{
+    out_calculatehaspa();
     task_init();
     order_calculate();
     order_output();

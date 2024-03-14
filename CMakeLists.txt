@@ -9,17 +9,22 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
+#set(BOOST_ROOT C:/Boost)
+#set(Boost_LIBRARY_DIRS c:/Boost/lib)
+
+
 find_package(Qt6 COMPONENTS Svg REQUIRED)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Svg)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools SvgWidgets)
-include_directories("./KDChart-qt6")
+find_package(PythonLibs REQUIRED)
+find_package(Python COMPONENTS NumPy REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
+find_package(Boost  REQUIRED
+             COMPONENTS system filesystem thread)
 
-add_library(kdchart STATIC IMPORTED)
-
-set_target_properties(kdchart PROPERTIES IMPORTED_LOCATION "./libkdchart-qt63.dll.a")
 
 
-set(lib_path "E:/考试/人工智能/课件/kdchart-3.0.0/build/lib/Release/")
 set(TS_FILES test_en_US.ts)
 
 set(PROJECT_SOURCES
@@ -42,6 +47,39 @@ set(PROJECT_SOURCES
         mmmresult.ui
         mmmresult.cpp
         mmmresult.h
+        matplotlibcpp.h
+        ganntplot.cpp
+        ganntplot.h
+        kl.cpp
+        kl.h
+        klresult.ui
+        klresult.cpp
+        klresult.h
+        haspa.h
+        haspa.cpp
+        gchs_hspa.cpp
+        gchs_hspa.h
+        haspa_hg.cpp
+        haspa_hg.h
+        haspa_hga.cpp
+        haspa_hga.h
+        haspa_ahg.cpp
+        haspa_ahg.h
+        haspa_criticalpath.cpp
+        haspa_criticalpath.h
+        eshc.cpp
+        eshc.h
+        hspa_ga.cpp
+        hspa_ga.h
+        hasparesult.cpp
+        hasparesult.ui
+        hasparesult.h
+        haspacpresult.cpp
+        haspacpresult.h
+        haspacpresult.ui
+        haspagaresult.cpp
+        haspagaresult.h
+        haspagaresult.ui
         ${TS_FILES}
 )
 
@@ -73,6 +111,8 @@ else()
 endif()
 
 target_link_libraries(test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Svg Qt6::SvgWidgets)
+target_link_libraries(test PRIVATE ${PYTHON_LIBRARIES} Python::NumPy ${Boost_LIBRARIES})
+
 
 set_target_properties(test PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

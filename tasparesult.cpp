@@ -42,13 +42,13 @@ void tasparesult::showEvent(QShowEvent *event) {
     for (int i = 0; i < n; ++i) {
         all_in=false;
         for (int j = 0; j < n; ++j) {
-            if (array[i][j] == 1) {
-                out << "  T" << i+1 << " -> T" << j+1 << ";\n";
+            if (array[i][j] != 0) {
+                out << "  \"T" << i+1 <<"," << t.val[i]  <<  " \" " << " -> " << " \"T" << j+1 << "," << t.val[j] << " \" "  <<";\n";
                 all_in=true;
             }
         }
-        if(all_in==false)
-            out << " T"<<i+1;
+        if(all_in==false&&i!=n-1)
+            out << " \"T"<<i+1 << "," << t.val[i] << " \" ";
 
     }
     out << "}\n";

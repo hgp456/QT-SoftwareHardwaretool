@@ -3,7 +3,8 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
-
+#include "haspa_hg.h"
+#include "haspa_hga.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -17,7 +18,15 @@ int main(int argc, char *argv[])
             break;
         }
     }
+//    QApplication::setAttribute(Qt::AA_Use96Dpi); qputenv("QT_SCALE_FACTOR", QString::number(1.0).toLatin1());
     MainWindow w;
     w.show();
+
+//    HASPA_HG haspa_hg;
+//    haspa_hga hga;
+
+//    hga.run();
+//    haspa_hg.run();
+
     return a.exec();
 }

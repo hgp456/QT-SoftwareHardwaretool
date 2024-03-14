@@ -1,6 +1,6 @@
-#include "mupparesult.h"
-#include "ui_mupparesult.h"
-#include "muppa.h"
+#include "hasparesult.h"
+#include "ui_hasparesult.h"
+#include <QString>
 #include <QProcess>
 #include <QFile>
 #include <QTextStream>
@@ -11,23 +11,21 @@
 #include <QtSvg/QSvgRenderer>
 #include <Qtsvg/QtSvg>
 #include <QGraphicsScene>
-#include <QDesktopServices>
 #include <QFileDialog>
-
-
-MuppaResult::MuppaResult(QWidget *parent,int value) :
+hasparesult::hasparesult(QWidget *parent,int tasknum) :
     QWidget(parent),
-    m(value),
-    ui(new Ui::MuppaResult)
+    hsp(tasknum),
+    ui(new Ui::hasparesult)
 {
     ui->setupUi(this);
 }
 
-void MuppaResult::showEvent(QShowEvent *event) {
 
-   ui->plainTextEdit->insertPlainText(m.t.order_print()+"\n");
-   ui->plainTextEdit->insertPlainText(m.result_output());
-    std::vector<std::vector<int>> array = m.t.array;
+void hasparesult::showEvent(QShowEvent *event) {
+     ui->plainTextEdit->insertPlainText(hsp.output+"\n");
+     ui->plainTextEdit->insertPlainText(hsp.result_output());
+
+    std::vector<std::vector<int>> array = hsp.taskattribute.CommunicationCost;
     qDebug() << QDir::currentPath();
     QFile dotFile("graph.dot");
     if (!dotFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -43,14 +41,27 @@ void MuppaResult::showEvent(QShowEvent *event) {
         all_in=false;
         for (int j = 0; j < n; ++j) {
             if (array[i][j] != 0) {
-                out << "  \"T" << i+1 <<"," << m.t.val[i]  <<  " \" " << " -> " << " \"T" << j+1 << "," << m.t.val[j] << " \" "  <<";\n";
+                out << "  \"T" << i+1 <<"(" << hsp.taskattribute.sortExectime[i] <<  "," << hsp.taskattribute.hardExectime[i] <<"," << hsp.taskattribute.hardwareArea[i] << ")" <<  " \" " << " -> " << " \"T" << j+1 << "(" << hsp.taskattribute.sortExectime[j] <<"," <<hsp.taskattribute.hardExectime[j] <<"," << hsp.taskattribute.hardwareArea[j]  << ")" << " \"" << "[label=" <<"\"" << hsp.taskattribute.CommunicationCost[i][j] << "\"" <<",penwidth=\"3\"]" <<";\n";
                 all_in=true;
             }
         }
-        if(all_in==false&&i!=n-1)
-            out << " \"T"<<i+1 << "," << m.t.val[i] << " \" ";
+        if(all_in==false&&hsp.TaskList[i].pre.size()==0)
+            out << " \"T"<<i+1 << "(" << hsp.taskattribute.sortExectime[i]<<  "," << hsp.taskattribute.hardExectime[i] << "," << hsp.taskattribute.hardwareArea[i] << ")" << " \" ";
 
     }
+
+    //涂色
+    for (int i = 0; i < n; ++i) {
+        if(hsp.TaskList[i].hardwareuse==true)
+        {
+            out << "  \"T" << i+1 <<"(" << hsp.taskattribute.sortExectime[i] <<  "," << hsp.taskattribute.hardExectime[i] <<"," << hsp.taskattribute.hardwareArea[i] <<")" <<  " \" " << "[fillcolor=\"Red\", style=\"filled\",penwidth=\"3\"] "  <<";\n";
+        }
+        else
+        {
+            out << "  \"T" << i+1 <<"(" << hsp.taskattribute.sortExectime[i] <<  "," << hsp.taskattribute.hardExectime[i] <<"," << hsp.taskattribute.hardwareArea[i] <<")"  <<  " \" " << "[fillcolor=\"Orange\", style=\"filled\",penwidth=\"3\"] "  <<";\n";
+        }
+    }
+
     out << "}\n";
     dotFile.close();
 
@@ -72,11 +83,6 @@ void MuppaResult::showEvent(QShowEvent *event) {
         qDebug() << "Process execution failed.";
     }
 
-
-
-    // Load the graph image and display it in the QGraphicsView
-    //    QPixmap pixmap("graph.svg");
-    //    QGraphicsView *graphicsView = new QGraphicsView;
     ui->scrollArea->setWidget(graphicsView);
 
     QSvgRenderer *renderer = new QSvgRenderer(QLatin1String("graph.svg"));
@@ -94,18 +100,15 @@ void MuppaResult::showEvent(QShowEvent *event) {
     graphicsView->setAlignment(Qt::AlignCenter);
     graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
     setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint | Qt::WindowMinimizeButtonHint | Qt::Window);
-
-
-
-
+    //
 }
 
-MuppaResult::~MuppaResult()
+hasparesult::~hasparesult()
 {
     delete ui;
 }
 
-void MuppaResult::on_pushButton_clicked()
+void hasparesult::on_pushButton_clicked()
 {
     x=x-0.25;
     y=y-0.25;
@@ -115,7 +118,7 @@ void MuppaResult::on_pushButton_clicked()
 }
 
 
-void MuppaResult::on_pushButton_2_clicked()
+void hasparesult::on_pushButton_2_clicked()
 {
     x=x+0.25;
     y=y+0.25;
@@ -123,7 +126,7 @@ void MuppaResult::on_pushButton_2_clicked()
 }
 
 
-void MuppaResult::on_pushButton_5_clicked()
+void hasparesult::on_pushButton_4_clicked()
 {
     QString filePath = QFileDialog::getSaveFileName(this, "Save File", "", "SVG Files (*.svg)");
 
@@ -133,15 +136,13 @@ void MuppaResult::on_pushButton_5_clicked()
 }
 
 
-void MuppaResult::on_pushButton_6_clicked()
+void hasparesult::on_pushButton_3_clicked()
 {
-
-    QProcess::startDetached("python", QStringList() << "test.py");
-//    QDesktopServices::openUrl(QUrl::fromLocalFile("output.svg"));
+     QProcess::startDetached("python", QStringList() << "test_hspa.py");
 //    QProcess process1;
 //    process1.setProgram("python");
 //    QStringList arguments1;
-//    arguments1 << "test.py";
+//    arguments1 << "test_hspa.py";
 //    process1.setArguments(arguments1);
 //    process1.start();
 //    if (process1.waitForFinished(-1)) {
@@ -153,6 +154,6 @@ void MuppaResult::on_pushButton_6_clicked()
 //    } else {
 //        qDebug() << "Process execution failed.";
 //    }
-//    QDesktopServices::openUrl(QUrl::fromLocalFile("output.svg"));
+
 }
 

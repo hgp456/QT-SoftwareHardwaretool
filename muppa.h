@@ -4,6 +4,8 @@
 #define IDLE 0
 #define BUSY 1
 #include "taspa.h"
+#include "ganntplot.h"
+
 struct muppatasktype
 {
     int num;//编号
@@ -47,6 +49,7 @@ public:
     void task_init();
     int rely_anas();
     Taspa t;
+    std::vector<GanntInfo> Ganntinfo;
     QString result_output();
 };
 
