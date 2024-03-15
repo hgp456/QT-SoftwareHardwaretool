@@ -13,6 +13,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(BOOST_ROOT C:/Boost)
 #set(Boost_LIBRARY_DIRS c:/Boost/lib)
 
+link_directories(C:/Boost)
+
+# Add Boost include directory
+## add you Boost Version Here
+include_directories(C:/Boost/include/boost-1\_83)
 
 find_package(Qt6 COMPONENTS Svg REQUIRED)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Svg)
@@ -20,8 +25,8 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Svg
 find_package(PythonLibs REQUIRED)
 find_package(Python COMPONENTS NumPy REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
-find_package(Boost  REQUIRED
-             COMPONENTS system filesystem thread)
+#find_package(Boost  REQUIRED#[[
+       #      COMPONENTS system filesystem thread)]]
 
 
 
