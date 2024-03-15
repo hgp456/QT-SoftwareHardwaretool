@@ -4,4 +4,17 @@
 直接下载Relase包里面的程序 点开test.exe即可 目前暂时只支持windows下运行
 
 2.源码编译
-在开发前需要安装QT6
+
+软件依赖 QT6 Graphviz Python
+
+C++ Boost库
+
+QT6 下载地址:
+    注:可以申请教育版的权限
+
+Graphviz 下载地址:
+https://graphviz.org/download/
+    注：要加入环境变量
+
+Python包依赖
+pip install matplotlib numpy seaborn
