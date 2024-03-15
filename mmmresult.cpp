@@ -129,7 +129,7 @@ void MMMresult::showEvent(QShowEvent *event) {
 
 //    // Run the dot command to generate the graph
     QProcess process;
-    process.setProgram("dot");
+    process.setProgram("Graphviz/bin/dot.exe");
     QStringList arguments;
     arguments << "-Tsvg" << "graph.dot" << "-o" << "graph.svg";
     process.setArguments(arguments);

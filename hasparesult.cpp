@@ -67,7 +67,7 @@ void hasparesult::showEvent(QShowEvent *event) {
 
     // Run the dot command to generate the graph
     QProcess process;
-    process.setProgram("dot");
+    process.setProgram("Graphviz/bin/dot.exe");
     QStringList arguments;
     arguments << "-Tsvg" << "graph.dot" << "-o" << "graph.svg";
     process.setArguments(arguments);
@@ -139,6 +139,8 @@ void hasparesult::on_pushButton_4_clicked()
 void hasparesult::on_pushButton_3_clicked()
 {
      QProcess::startDetached("python", QStringList() << "test_hspa.py");
+//    QProcess::startDetached("start test_hspa.exe");
+//        QProcess::execute("test_hspa.exe"); //用于打包版本
 //    QProcess process1;
 //    process1.setProgram("python");
 //    QStringList arguments1;

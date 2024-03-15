@@ -120,9 +120,8 @@ void MainWindow::on_pushButton_2_clicked()
         // Check if the file can be opened
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
-            QString fileContent = in.readAll();
-
-
+            QString fileContent = in.readAll().replace("\r\n", "\n");;
+            fileContent.replace("\r\n", "\n");
             QStringList dataList;  // 存储解析后的字符串数据
 
 //            int  max;  // 存储解析后的整数数据
@@ -163,7 +162,7 @@ void MainWindow::on_pushButton_2_clicked()
 //              解析第四部分数据:依赖矩阵
              for (int i = 6; i < lines.size(); i++) {
                  dataList = lines[i].split(",");
-                 ui->plainTextEdit->insertPlainText(dataList.join(" "));
+                  ui->plainTextEdit->appendPlainText(dataList.join(" "));
              }
 
 //            ui->plainTextEdit->appendPlainText("1");
@@ -197,8 +196,7 @@ void MainWindow::on_pushButton_3_clicked()
         // Check if the file can be opened
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
-            QString fileContent = in.readAll();
-
+            QString fileContent = in.readAll().replace("\r\n", "\n");
 
             QStringList dataList;  // 存储解析后的字符串数据
 
@@ -270,7 +268,7 @@ void MainWindow::on_pushButton_3_clicked()
             //              解析第四部分数据:依赖矩阵
             for (int i = 16; i < lines.size(); i++) {
                  dataList = lines[i].split(",");
-                 ui->plainTextEdit_5->insertPlainText(dataList.join(" "));
+                 ui->plainTextEdit_5->appendPlainText(dataList.join(" "));
             }
 
             //            ui->plainTextEdit->appendPlainText("1");
@@ -372,7 +370,7 @@ void MainWindow::on_pushButton_5_clicked()
         // Check if the file can be opened
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
-            QString fileContent = in.readAll();
+            QString fileContent = in.readAll().replace("\r\n", "\n");;
 
 
             QStringList dataList;  // 存储解析后的字符串数据
@@ -419,7 +417,7 @@ void MainWindow::on_pushButton_5_clicked()
             //              解析第四部分数据:依赖矩阵
             for (int i = 8; i < lines.size(); i++) {
                  dataList = lines[i].split(",");
-                 ui->plainTextEdit_2->insertPlainText(dataList.join(" "));
+                 ui->plainTextEdit_2->appendPlainText(dataList.join(" "));
             }
 
             //            ui->plainTextEdit->appendPlainText("1");
@@ -510,7 +508,7 @@ void MainWindow::on_pushButton_11_clicked()
         // Check if the file can be opened
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
-            QString fileContent = in.readAll();
+            QString fileContent = in.readAll().replace("\r\n", "\n");;
 
 
             QStringList dataList;  // 存储解析后的字符串数据
@@ -537,7 +535,7 @@ void MainWindow::on_pushButton_11_clicked()
             //              解析第四部分数据:依赖矩阵
             for (int i = 6; i < lines.size(); i++) {
                  dataList = lines[i].split(",");
-                 ui->plainTextEdit_3->insertPlainText(dataList.join(" "));
+                 ui->plainTextEdit_3->appendPlainText(dataList.join(" "));
             }
 
             //            ui->plainTextEdit->appendPlainText("1");
@@ -622,7 +620,7 @@ void MainWindow::on_pushButton_12_clicked()
         // Check if the file can be opened
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
-            QString fileContent = in.readAll();
+            QString fileContent = in.readAll().replace("\r\n", "\n");;
 
 
             QStringList dataList;  // 存储解析后的字符串数据
@@ -635,7 +633,7 @@ void MainWindow::on_pushButton_12_clicked()
             //              解析第四部分数据:依赖矩阵
             for (int i = 2; i < lines.size(); i++) {
                  dataList = lines[i].split(",");
-                 ui->plainTextEdit_4->insertPlainText(dataList.join(" "));
+                 ui->plainTextEdit_4->appendPlainText(dataList.join(" "));
             }
 
             //            ui->plainTextEdit->appendPlainText("1");
@@ -808,7 +806,7 @@ void MainWindow::on_pushButton_22_clicked()
         // Check if the file can be opened
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
-            QString fileContent = in.readAll();
+            QString fileContent = in.readAll().replace("\r\n", "\n");;
 
 
             QStringList dataList;  // 存储解析后的字符串数据
@@ -881,7 +879,7 @@ void MainWindow::on_pushButton_22_clicked()
             //              解析第四部分数据:依赖矩阵
             for (int i = 16; i < lines.size(); i++) {
                  dataList = lines[i].split(",");
-                 ui->plainTextEdit_11->insertPlainText(dataList.join(" "));
+                 ui->plainTextEdit_11->appendPlainText(dataList.join(" "));
             }
 
             //            ui->plainTextEdit->appendPlainText("1");
@@ -1011,7 +1009,7 @@ void MainWindow::on_pushButton_24_clicked()
         // Check if the file can be opened
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream in(&file);
-            QString fileContent = in.readAll();
+            QString fileContent = in.readAll().replace("\r\n", "\n");;
 
 
             QStringList dataList;  // 存储解析后的字符串数据
@@ -1084,7 +1082,7 @@ void MainWindow::on_pushButton_24_clicked()
             //              解析第四部分数据:依赖矩阵
             for (int i = 16; i < lines.size(); i++) {
                  dataList = lines[i].split(",");
-                 ui->plainTextEdit_12->insertPlainText(dataList.join(" "));
+                 ui->plainTextEdit_12->appendPlainText(dataList.join(" "));
             }
 
             //            ui->plainTextEdit->appendPlainText("1");
@@ -1189,7 +1187,7 @@ void MainWindow::on_pushButton_26_clicked()
         QFile file(filePath);
         if (file.open(QIODevice::ReadOnly)) {
              QTextStream in(&file);
-             QString fileContent = in.readAll();
+             QString fileContent = in.readAll().replace("\r\n", "\n");;
              // Rest of your file processing code here...
 
              QStringList dataList;  // 存储解析后的字符串数据
@@ -1310,7 +1308,7 @@ void MainWindow::on_pushButton_8_clicked()
         QFile file(filePath);
         if (file.open(QIODevice::ReadOnly)) {
              QTextStream in(&file);
-             QString fileContent = in.readAll();
+             QString fileContent = in.readAll().replace("\r\n", "\n");;
              // Rest of your file processing code here...
 
              QStringList dataList;  // 存储解析后的字符串数据
@@ -1420,7 +1418,7 @@ void MainWindow::on_pushButton_29_clicked()
     // Check if the file can be opened
     if (file.open(QIODevice::ReadOnly)) {
         QTextStream in(&file);
-        QString fileContent = in.readAll();
+        QString fileContent = in.readAll().replace("\r\n", "\n");;
 
 
         QStringList dataList;  // 存储解析后的字符串数据
@@ -1493,7 +1491,7 @@ void MainWindow::on_pushButton_29_clicked()
         //              解析第四部分数据:依赖矩阵
         for (int i = 16; i < lines.size(); i++) {
              dataList = lines[i].split(",");
-             ui->plainTextEdit_14->insertPlainText(dataList.join(" "));
+             ui->plainTextEdit_14->appendPlainText(dataList.join(" "));
         }
 
         //            ui->plainTextEdit->appendPlainText("1");
