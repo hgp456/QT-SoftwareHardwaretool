@@ -33,60 +33,93 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 set(TS_FILES test_en_US.ts)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        taspa.cpp
-        taspa.h
-        tasparesult.cpp
-        tasparesult.h
-        tasparesult.ui
-        muppa.cpp
-        muppa.h
-        mupparesult.ui
-        mupparesult.cpp
-        mupparesult.h
-        mmm.cpp
-        mmm.h
-        mmmresult.ui
-        mmmresult.cpp
-        mmmresult.h
-        matplotlibcpp.h
-        ganntplot.cpp
-        ganntplot.h
-        kl.cpp
-        kl.h
-        klresult.ui
-        klresult.cpp
-        klresult.h
-        haspa.h
-        haspa.cpp
-        gchs_hspa.cpp
-        gchs_hspa.h
-        haspa_hg.cpp
-        haspa_hg.h
-        haspa_hga.cpp
-        haspa_hga.h
-        haspa_ahg.cpp
-        haspa_ahg.h
-        haspa_criticalpath.cpp
-        haspa_criticalpath.h
-        eshc.cpp
-        eshc.h
-        hspa_ga.cpp
-        hspa_ga.h
-        hasparesult.cpp
-        hasparesult.ui
-        hasparesult.h
-        haspacpresult.cpp
-        haspacpresult.h
-        haspacpresult.ui
-        haspagaresult.cpp
-        haspagaresult.h
-        haspagaresult.ui
+        source/main.cpp
+        source/mainwindow.cpp
+        inc/mainwindow.h
+        source/mainwindow.ui
+        source/taspa.cpp
+        inc/taspa.h
+        source/tasparesult.cpp
+        inc/tasparesult.h
+        source/tasparesult.ui
+        source/muppa.cpp
+        inc/muppa.h
+        source/mupparesult.ui
+        source/mupparesult.cpp
+        inc/mupparesult.h
+        source/mmm.cpp
+        inc/mmm.h
+        source/mmmresult.ui
+        source/mmmresult.cpp
+        inc/mmmresult.h
+        inc/matplotlibcpp.h
+        source/ganntplot.cpp
+        inc/ganntplot.h
+        source/kl.cpp
+        inc/kl.h
+        source/klresult.ui
+        source/klresult.cpp
+        inc/klresult.h
+        inc/haspa.h
+        source/haspa.cpp
+        source/gchs_hspa.cpp
+        inc/gchs_hspa.h
+        source/haspa_hg.cpp
+        inc/haspa_hg.h
+        source/haspa_hga.cpp
+        inc/haspa_hga.h
+        source/haspa_ahg.cpp
+        inc/haspa_ahg.h
+        source/haspa_criticalpath.cpp
+        inc/haspa_criticalpath.h
+        source/eshc.cpp
+        inc/eshc.h
+        source/hspa_ga.cpp
+        inc/hspa_ga.h
+        source/hasparesult.cpp
+        source/hasparesult.ui
+        inc/hasparesult.h
+        source/haspacpresult.cpp
+        inc/haspacpresult.h
+        source/haspacpresult.ui
+        source/haspagaresult.cpp
+        inc/haspagaresult.h
+        source/haspagaresult.ui
         ${TS_FILES}
 )
+
+#qt6_wrap_ui(PROJECT_SOURCES
+#    ui/mainwindow.ui
+#    ui/haspacpresult.ui
+#    ui/haspagaresult.ui
+#    ui/hasparesult.ui
+#    ui/klresult.ui
+#    ui/mmmresult.ui
+#    ui/mupparesult.ui
+#    ui/tasparesult.ui
+#    ui/taspa.ui
+#)
+
+## 递归地查找源文件目录下所有的.cpp文件
+#file(GLOB_RECURSE PROJECT_SOURCES_CPP "${CMAKE_SOURCE_DIR}/source/*.cpp")# 递归地查找源文件目录下所有的.h文件
+
+#file(GLOB_RECURSE PROJECT_SOURCES_H   "${CMAKE_SOURCE_DIR}/inc/*.h")
+
+## 递归地查找源文件目录下所有的.ui文件
+#file(GLOB_RECURSE PROJECT_SOURCES_UI
+#    "${CMAKE_SOURCE_DIR}/ui/*.ui")# 将所有找到的文件添加到PROJECT_SOURCES变量中
+
+
+#set(PROJECT_SOURCES    ${PROJECT_SOURCES_CPP}
+#    ${PROJECT_SOURCES_H}    ${PROJECT_SOURCES_UI} ${TS_FILES}
+#)
+
+
+
+
+# 寻找并添加所有的.ts文件
+#file(GLOB TS_FILES
+#    "${CMAKE_SOURCE_DIR}/source/*.ts")# 为TS_FILES创建一个资源文件qt5_create_translation(QM_FILES ${TS_FILES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(test
@@ -114,6 +147,10 @@ else()
 
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+    "${CMAKE_SOURCE_DIR}/inc")
+
 
 target_link_libraries(test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Svg Qt6::SvgWidgets)
 target_link_libraries(test PRIVATE ${PYTHON_LIBRARIES} Python::NumPy ${Boost_LIBRARIES})
