@@ -1902,6 +1902,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>帮助</string>
     </property>
+    <addaction name="actionOnline_Help"/>
+    <addaction name="actionsecond"/>
    </widget>
    <addaction name="menutest"/>
    <addaction name="menu"/>
@@ -1957,6 +1959,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionHaspa_GA">
    <property name="text">
     <string>Haspa_GA</string>
+   </property>
+  </action>
+  <action name="actionOnline_Help">
+   <property name="text">
+    <string>帮助</string>
+   </property>
+  </action>
+  <action name="actionsecond">
+   <property name="text">
+    <string>关于工具</string>
    </property>
   </action>
  </widget>

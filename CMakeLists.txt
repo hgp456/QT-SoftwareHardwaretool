@@ -19,6 +19,7 @@ link_directories(C:/Boost)
 ## add you Boost Version Here
 include_directories(C:/Boost/include/boost-1\_84)
 
+find_package(Qt6 REQUIRED COMPONENTS Help)
 find_package(Qt6 COMPONENTS Svg REQUIRED)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Svg)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools SvgWidgets)
@@ -132,8 +133,7 @@ endif()
 target_include_directories(${PROJECT_NAME} PRIVATE
     "${CMAKE_SOURCE_DIR}/inc")
 
-
-target_link_libraries(test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Svg Qt6::SvgWidgets)
+target_link_libraries(test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Svg Qt6::SvgWidgets  Qt6::Help)
 target_link_libraries(test PRIVATE ${PYTHON_LIBRARIES} Python::NumPy ${Boost_LIBRARIES})
 
 

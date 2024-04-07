@@ -73,6 +73,10 @@ private slots:
 
     void on_pushButton_30_clicked();
 
+    void on_actionOnline_Help_triggered();
+
+    void on_actionsecond_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
