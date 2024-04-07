@@ -9,9 +9,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QIcon icon(":/images/icon.ico");
+    // QIcon /*icon*/(":/images/icon.ico");
 
-    QApplication::setWindowIcon(icon);
+    // QApplication::setWindowIcon(icon);
 
     QFile qssFile("D:/workspace/QT-SoftwareHardwaretool/QSS/Ubuntu.qss");//1.
     if(qssFile.open(QFile::ReadOnly)){//2.
@@ -33,12 +33,6 @@ int main(int argc, char *argv[])
 //    QApplication::setAttribute(Qt::AA_Use96Dpi); qputenv("QT_SCALE_FACTOR", QString::number(1.0).toLatin1());
     MainWindow w;
     w.show();
-
-//    HASPA_HG haspa_hg;
-//    haspa_hga hga;
-
-//    hga.run();
-//    haspa_hg.run();
 
     return a.exec();
 }

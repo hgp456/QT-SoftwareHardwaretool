@@ -29,7 +29,7 @@ include_directories(${PYTHON_INCLUDE_DIRS})
        #      COMPONENTS system filesystem thread)]]
 
 
-qt6_add_resources(qrc_FILES source/res.qrc)
+qt6_add_resources(qrc_FILES res.qrc)
 
 
 
@@ -89,46 +89,19 @@ set(PROJECT_SOURCES
         inc/haspagaresult.h
         source/haspagaresult.ui
         ${TS_FILES}
+        # logo.rc
+        images/logo.ico
 )
 
-#qt6_wrap_ui(PROJECT_SOURCES
-#    ui/mainwindow.ui
-#    ui/haspacpresult.ui
-#    ui/haspagaresult.ui
-#    ui/hasparesult.ui
-#    ui/klresult.ui
-#    ui/mmmresult.ui
-#    ui/mupparesult.ui
-#    ui/tasparesult.ui
-#    ui/taspa.ui
-#)
 
-## 递归地查找源文件目录下所有的.cpp文件
-#file(GLOB_RECURSE PROJECT_SOURCES_CPP "${CMAKE_SOURCE_DIR}/source/*.cpp")# 递归地查找源文件目录下所有的.h文件
+set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/logo.rc")
 
-#file(GLOB_RECURSE PROJECT_SOURCES_H   "${CMAKE_SOURCE_DIR}/inc/*.h")
-
-## 递归地查找源文件目录下所有的.ui文件
-#file(GLOB_RECURSE PROJECT_SOURCES_UI
-#    "${CMAKE_SOURCE_DIR}/ui/*.ui")# 将所有找到的文件添加到PROJECT_SOURCES变量中
-
-
-#set(PROJECT_SOURCES    ${PROJECT_SOURCES_CPP}
-#    ${PROJECT_SOURCES_H}    ${PROJECT_SOURCES_UI} ${TS_FILES}
-#)
-
-
-
-
-# 寻找并添加所有的.ts文件
-#file(GLOB TS_FILES
-#    "${CMAKE_SOURCE_DIR}/source/*.ts")# 为TS_FILES创建一个资源文件qt5_create_translation(QM_FILES ${TS_FILES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(test
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        ${qrc_FILES}
+        ${app_icon_resource_windows}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET test APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -141,6 +114,7 @@ else()
         add_library(test SHARED
             ${PROJECT_SOURCES}
             ${qrc_FILES}
+            # logo.rc
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
@@ -148,6 +122,7 @@ else()
         add_executable(test
             ${PROJECT_SOURCES}
             ${qrc_FILES}
+            logo.rc
         )
     endif()
 
