@@ -17,7 +17,7 @@ link_directories(C:/Boost)
 
 # Add Boost include directory
 ## add you Boost Version Here
-include_directories(C:/Boost/include/boost-1\_83)
+include_directories(C:/Boost/include/boost-1\_84)
 
 find_package(Qt6 COMPONENTS Svg REQUIRED)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Svg)
@@ -27,6 +27,9 @@ find_package(Python COMPONENTS NumPy REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 #find_package(Boost  REQUIRED#[[
        #      COMPONENTS system filesystem thread)]]
+
+
+qt6_add_resources(qrc_FILES source/res.qrc)
 
 
 
@@ -125,6 +128,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(test
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${qrc_FILES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET test APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -136,12 +140,14 @@ else()
     if(ANDROID)
         add_library(test SHARED
             ${PROJECT_SOURCES}
+            ${qrc_FILES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(test
             ${PROJECT_SOURCES}
+            ${qrc_FILES}
         )
     endif()
 
