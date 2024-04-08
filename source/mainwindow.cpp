@@ -23,6 +23,7 @@
 #include "haspagaresult.h"
 #include "QMessageBox"
 #include <QtHelp>
+#include "assistant.h"
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QMainWindow::resizeEvent(event);
@@ -48,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->showMaximized();
+
 }
 MainWindow::~MainWindow()
 {
@@ -1586,32 +1588,24 @@ void MainWindow::on_pushButton_30_clicked()
     hsp->show();
 }
 
-
+Assistant assistant;
 void MainWindow::on_actionOnline_Help_triggered()
 {
-    QHelpEngineCore helpEngine("mycollection.qhc");
-
-        // get all file references for the identifier
-        QList<QHelpLink> links =
-        helpEngine.documentsForIdentifier(QLatin1String("MyDialog::ChangeButton"));
-
-    // If help is available for this keyword, get the help data
-    // of the first file reference.
-    if (links.count()) {
-        QByteArray helpData = helpEngine.fileData(links.constBegin()->url);
-        // show the documentation to the user
-        // if (!helpData.isEmpty())
-            // displayHelp(helpData);
-    // }
-    }
+    assistant.showDocumentation();
 }
 
 
 void MainWindow::on_actionsecond_triggered()
 {
     QMessageBox::about(this, tr("关于智能嵌入式系统课程工具"),
-                       tr("本工具是对陈仪香教授所著的《智能嵌入式系统设计》书中的算法进行实现并进行图形化展示"
+                       tr("本工具是对陈仪香教授所著的《智能嵌入式系统设计》书中的算法进行实现并进行图形化展示。"
                           "目的是更直观的得到书中算法的结果,以此能够更好地理解书中的算法\n"
-                          "如有意见或建议,请通过51255902164@stu.ecnu.edu.cn联系\n!"));
+                          "如有意见或建议,请通过51255902164@stu.ecnu.edu.cn联系\n"));
+}
+
+
+void MainWindow::on_actionguanyuqt_triggered()
+{
+    QMessageBox::aboutQt(this);
 }
 

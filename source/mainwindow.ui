@@ -1877,7 +1877,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1049</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menutest">
@@ -1904,6 +1904,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <addaction name="actionOnline_Help"/>
     <addaction name="actionsecond"/>
+    <addaction name="actionguanyuqt"/>
    </widget>
    <addaction name="menutest"/>
    <addaction name="menu"/>
@@ -1969,6 +1970,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionsecond">
    <property name="text">
     <string>关于工具</string>
+   </property>
+  </action>
+  <action name="actionguanyuqt">
+   <property name="text">
+    <string>关于Qt</string>
    </property>
   </action>
  </widget>

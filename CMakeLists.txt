@@ -92,6 +92,8 @@ set(PROJECT_SOURCES
         ${TS_FILES}
         # logo.rc
         images/logo.ico
+        source/assistant.cpp
+        inc/assistant.h
 )
 
 
@@ -136,6 +138,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 target_link_libraries(test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Svg Qt6::SvgWidgets  Qt6::Help)
 target_link_libraries(test PRIVATE ${PYTHON_LIBRARIES} Python::NumPy ${Boost_LIBRARIES})
 
+
+target_compile_definitions(test PUBLIC
+    SRCDIR="${CMAKE_CURRENT_SOURCE_DIR}/"
+)
 
 set_target_properties(test PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
