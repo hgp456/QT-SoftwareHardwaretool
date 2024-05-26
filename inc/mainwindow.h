@@ -79,6 +79,8 @@ private slots:
 
     void on_actionguanyuqt_triggered();
 
+    void on_actionTrafficSign_triggered();
+
 private:
     Ui::MainWindow *ui;
     // Assistant *assistant;

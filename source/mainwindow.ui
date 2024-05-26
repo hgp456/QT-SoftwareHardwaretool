@@ -33,7 +33,7 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="page_4">
+    <widget class="QWidget" name="StartPage">
      <widget class="QTextBrowser" name="textBrowser_6">
       <property name="geometry">
        <rect>
@@ -58,7 +58,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_5">
+    <widget class="QWidget" name="KL">
      <widget class="QTextBrowser" name="textBrowser_8">
       <property name="geometry">
        <rect>
@@ -172,7 +172,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_6">
+    <widget class="QWidget" name="HSPA">
      <widget class="QTextBrowser" name="textBrowser_10">
       <property name="geometry">
        <rect>
@@ -453,7 +453,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_7">
+    <widget class="QWidget" name="HSPACritical">
      <widget class="QWidget" name="layoutWidget_8">
       <property name="geometry">
        <rect>
@@ -734,7 +734,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_8">
+    <widget class="QWidget" name="ESHC">
      <widget class="QWidget" name="layoutWidget_9">
       <property name="geometry">
        <rect>
@@ -995,7 +995,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_9">
+    <widget class="QWidget" name="HSPA_GA">
      <widget class="QTextBrowser" name="textBrowser_27">
       <property name="geometry">
        <rect>
@@ -1256,7 +1256,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="TrafficSign"/>
+    <widget class="QWidget" name="TaPSA">
      <widget class="QTextBrowser" name="textBrowser">
       <property name="geometry">
        <rect>
@@ -1438,7 +1439,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="MuPPA">
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
@@ -1639,7 +1640,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_3">
+    <widget class="QWidget" name="MMM">
      <widget class="QTextBrowser" name="textBrowser_3">
       <property name="geometry">
        <rect>
@@ -1897,6 +1898,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="actionHaspa"/>
     <addaction name="actionHaspa_critical"/>
     <addaction name="actionHaspa_GA"/>
+    <addaction name="actionTrafficSign"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -1975,6 +1977,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionguanyuqt">
    <property name="text">
     <string>关于Qt</string>
+   </property>
+  </action>
+  <action name="actionTrafficSign">
+   <property name="text">
+    <string>TrafficSign</string>
    </property>
   </action>
  </widget>

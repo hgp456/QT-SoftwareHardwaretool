@@ -36,7 +36,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     int stack_y=nowHeight / 2 - ui->stackedWidget->height() / 2;;
     // 设置小部件的新位置
 
-
     ui->stackedWidget->move(stack_x,stack_y);
 
 }
@@ -48,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentWidget(ui->StartPage);
     this->showMaximized();
 
 }
@@ -61,12 +61,12 @@ void MainWindow::on_pushButton_clicked()
 }
 void MainWindow::on_actionTaspa_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(6);
+    ui->stackedWidget->setCurrentWidget(ui->TaPSA);
 }
 
 void MainWindow::on_actionMuppa_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(7) ;
+    ui->stackedWidget->setCurrentWidget(ui->MuPPA) ;
 }
 
 void MainWindow::on_actionTaspa1_triggered()
@@ -81,18 +81,18 @@ void MainWindow::on_action_triggered()
 
 void MainWindow::on_actionKL_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentWidget(ui->KL);
 }
 
 
 void MainWindow::on_actionHaspa_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentWidget(ui->HSPA);
 }
 
 void MainWindow::on_actionHaspa_critical_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentWidget(ui->HSPACritical);
 }
 void MainWindow::on_actionESHC_triggered()
 {
@@ -101,11 +101,15 @@ void MainWindow::on_actionESHC_triggered()
 
 void MainWindow::on_actionHaspa_GA_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(5);
+    ui->stackedWidget->setCurrentWidget(ui->HSPA_GA);
 }
 
 
-
+void MainWindow::on_actionTrafficSign_triggered()
+{
+    ui->stackedWidget->setCurrentWidget(ui->TrafficSign);
+    // ui->stackedWidget->setCurrentWidget(QWidget *TrafficSign);
+}
 
 void MainWindow::on_pushButton_2_clicked()
 {
@@ -1608,4 +1612,7 @@ void MainWindow::on_actionguanyuqt_triggered()
 {
     QMessageBox::aboutQt(this);
 }
+
+
+
 
