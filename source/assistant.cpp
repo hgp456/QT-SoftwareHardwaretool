@@ -35,17 +35,14 @@ void Assistant::showDocumentation()
 static QString documentationDirectory()
 {
     QStringList paths;
-#ifdef SRCDIR
     paths.append(QLatin1StringView(SRCDIR));
-#endif
-    // paths.append(QLibraryInfo::path(QLibraryInfo::ExamplesPath));
-    // paths.append(QCoreApplication::applicationDirPath());
-    // paths.append(QStandardPaths::standardLocations(QStandardPaths::AppDataLocation));
-    qDebug() << paths;
+
     for (const auto &dir : std::as_const(paths)) {
-        const QString path = dir + "/documentation"_L1;
-        if (QFileInfo::exists(path))
+        const QString path = dir + "documentation";
+        if (QFileInfo::exists(path)){
+            qDebug()<<"Doc Path:" << path;
             return path;
+        }
     }
     return {};
 }
@@ -53,41 +50,35 @@ static QString documentationDirectory()
 //! [2]
 bool Assistant::startAssistant()
 {
-    if (m_process.isNull()) {
-        m_process.reset(new QProcess);
-        QObject::connect(m_process.data(), &QProcess::finished,
-                         m_process.data(), [this](int exitCode, QProcess::ExitStatus status) {
-            finished(exitCode, status);
-        });
+    m_process.reset(new QProcess);
+    QObject::connect(m_process.data(), &QProcess::finished,
+                     m_process.data(), [this](int exitCode, QProcess::ExitStatus status) {
+        finished(exitCode, status);
+    });
+
+    QString app = QLibraryInfo::path(QLibraryInfo::BinariesPath);
+
+    qDebug() << app;
+
+    app += "/assistant";
+
+    const QString collectionDirectory = documentationDirectory();
+    if (collectionDirectory.isEmpty()) {
+        showError(tr("The documentation directory cannot be found"));
+        return false;
     }
 
-    if (m_process->state() != QProcess::Running) {
-        QString app = QLibraryInfo::path(QLibraryInfo::BinariesPath);
-        qDebug() << app;
-#ifndef Q_OS_DARWIN
-        app += "/assistant"_L1;
-#else
-        app += "/Assistant.app/Contents/MacOS/Assistant"_L1;
-#endif
+    const QStringList args{"-collectionFile",
+                           collectionDirectory + "/Tool.qhc"};
 
-        const QString collectionDirectory = documentationDirectory();
-        if (collectionDirectory.isEmpty()) {
-            showError(tr("The documentation directory cannot be found"));
-            return false;
-        }
+    m_process->start(app, args);
 
-        const QStringList args{"-collectionFile"_L1,
-                               collectionDirectory + "/simpletextviewer.qhc"_L1,
-                               "-enableRemoteControl"_L1};
-
-        m_process->start(app, args);
-
-        if (!m_process->waitForStarted(3000)) {
-            showError(tr("Unable to launch Qt Assistant (%1): %2")
-                      .arg(QDir::toNativeSeparators(app), m_process->errorString()));
-            return false;
-        }
+    if (!m_process->waitForStarted(3000)) {
+        showError(tr("Unable to launch Qt Assistant (%1): %2")
+                  .arg(QDir::toNativeSeparators(app), m_process->errorString()));
+        return false;
     }
+
     return true;
 }
 //! [2]

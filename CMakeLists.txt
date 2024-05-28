@@ -13,10 +13,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(BOOST_ROOT C:/Boost)
 #set(Boost_LIBRARY_DIRS c:/Boost/lib)
 
-link_directories(C:/Boost)
 
 # Add Boost include directory
 ## add you Boost Version Here
+link_directories(C:/Boost)
 include_directories(C:/Boost/include/boost-1\_84)
 
 find_package(Qt6 REQUIRED COMPONENTS Help)
@@ -93,6 +93,8 @@ set(PROJECT_SOURCES
         # logo.rc
         images/logo.ico
         source/assistant.cpp
+        source/TrfficSign.cpp
+        inc/TrafficSign.h
         inc/assistant.h
 )
 

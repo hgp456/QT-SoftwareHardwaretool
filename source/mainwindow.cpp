@@ -1595,6 +1595,7 @@ void MainWindow::on_pushButton_30_clicked()
 Assistant assistant;
 void MainWindow::on_actionOnline_Help_triggered()
 {
+
     assistant.showDocumentation();
 }
 

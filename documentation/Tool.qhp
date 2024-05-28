@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+    <namespace>testHuang</namespace>
+    <virtualFolder>doc</virtualFolder>
+    <filterSection>
+        <toc>
+        <section title="简介" ref="Introduction.html"/>
+        <section title="TaPSA算法" ref="TaPSA.html"/>
+        <section title="MuPPA算法" ref="MuPPA.html"/>
+        <section title="MMM算法" ref="MMM.html"/>
+        <section title="KL算法" ref="KL.html"/>
+        <section title="HSPA算法" ref="HSPA.html"/>
+        </toc>
+        <keywords>
+            <keyword name="简介" ref="Introduction.html"/>
+            <keyword name="TaPSA算法" ref="TaPSA.html"/>
+            <keyword name="MuPPA算法" ref="MuPPA.html"/>
+            <keyword name="MMM算法" ref="MMM.html"/>
+            <keyword name="KL算法" ref="KL.html"/>
+            <keyword name="HSPA算法" ref="HSPA.html"/>
+        </keywords>
+        <files>
+            <file>Introduction.html</file>
+            <file>TaPSA.html</file>
+            <file>MuPPA.html</file>
+            <file>MMM.html</file>
+            <file>KL.html</file>
+            <file>HSPA.html</file>
+            <file>images/BookCover.jpg</file> 
+        </files>
+    </filterSection>
+</QtHelpProject>
