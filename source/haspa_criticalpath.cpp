@@ -502,7 +502,7 @@ int HASPA_CRITICALPATH::GetHardWareParition()
 //            qDebug() << "add T" <<i+1;
         }
     }
-
+    return 0;
 }
 
 int HASPA_CRITICALPATH::run()

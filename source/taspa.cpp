@@ -28,6 +28,8 @@ int Taspa::resize(int max)
     MaxOpRiFlag.resize(max, 0);
     Retime.resize(max, 0);
     task.resize(max);
+
+    return 0;
 }
 
 void Taspa::out_calculate()
