@@ -69,7 +69,7 @@ bool Assistant::startAssistant()
     }
 
     const QStringList args{"-collectionFile",
-                           collectionDirectory + "/Tool.qhc"};
+                           collectionDirectory + "/Tool2.qhc"};
 
     m_process->start(app, args);
 

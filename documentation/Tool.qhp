@@ -4,29 +4,32 @@
     <virtualFolder>doc</virtualFolder>
     <filterSection>
         <toc>
-        <section title="简介" ref="Introduction.html"/>
-        <section title="TaPSA算法" ref="TaPSA.html"/>
-        <section title="MuPPA算法" ref="MuPPA.html"/>
-        <section title="MMM算法" ref="MMM.html"/>
-        <section title="KL算法" ref="KL.html"/>
-        <section title="HSPA算法" ref="HSPA.html"/>
+        <section title="简介" ref="/html/1.Introduction.html"/>
+        <section title="工具运行" ref="/html/2.1.tooloperation.html"/>
+        <section title="TaPSA算法" ref="/html/2.2TaPSA.html"/>
+        <section title="MuPPA算法" ref="/html/2.3MuPPA.html"/>
+        <section title="MMM算法" ref="/html/2.4MMM.html"/>
+        <section title="KL算法" ref="/html/2.5KL.html"/>
+        <section title="HSPA算法" ref="/html/2.6HSPA.html"/>
         </toc>
         <keywords>
-            <keyword name="简介" ref="Introduction.html"/>
-            <keyword name="TaPSA算法" ref="TaPSA.html"/>
-            <keyword name="MuPPA算法" ref="MuPPA.html"/>
-            <keyword name="MMM算法" ref="MMM.html"/>
-            <keyword name="KL算法" ref="KL.html"/>
-            <keyword name="HSPA算法" ref="HSPA.html"/>
+            <keyword name="简介" ref="/html/1.Introduction.html"/>
+            <keyword name="工具运行" ref="/html/2.1.tooloperation.html"/>
+            <keyword name="TaPSA算法" ref="/html/2.2TaPSA.html"/>
+            <keyword name="MuPPA算法" ref="/html/2.3MuPPA.html"/>
+            <keyword name="MMM算法" ref="/html/2.4MMM.html"/>
+            <keyword name="KL算法" ref="/html/2.5KL.html"/>
+            <keyword name="HSPA算法" ref="/html/2.6HSPA.html"/>
         </keywords>
         <files>
-            <file>Introduction.html</file>
-            <file>TaPSA.html</file>
-            <file>MuPPA.html</file>
-            <file>MMM.html</file>
-            <file>KL.html</file>
-            <file>HSPA.html</file>
-            <file>images/BookCover.jpg</file> 
+            <file>/html/1.Introduction.html</file>
+            <file>/html/2.1.tooloperation.html</file>
+            <file>/html/2.2TaPSA.html</file>
+            <file>/html/2.3MuPPA.html</file>
+            <file>/html/2.4MMM.html</file>
+            <file>/html/2.5KL.html</file>
+            <file>/html/2.6HSPA.html</file> 
+            <file>/images/*</file>
         </files>
     </filterSection>
 </QtHelpProject>

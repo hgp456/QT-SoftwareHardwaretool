@@ -67,10 +67,10 @@ include CMakeFiles/test_autogen_timestamp_deps.dir/progress.make
 
 CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/lib/libQt6Core.a
 CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/./bin/moc.exe
-CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/lib/libQt6Widgets.a
-CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/./bin/uic.exe
-CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/lib/libQt6SvgWidgets.a
 CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/lib/libQt6Svg.a
+CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/lib/libQt6SvgWidgets.a
+CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/./bin/uic.exe
+CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/lib/libQt6Widgets.a
 CMakeFiles/test_autogen_timestamp_deps: D:/Qt/6.7.1/mingw_64/lib/libQt6Help.a
 
 test_autogen_timestamp_deps: CMakeFiles/test_autogen_timestamp_deps

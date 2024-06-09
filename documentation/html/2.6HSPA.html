@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>2.6 HSPA调度算法</title>
+    </head>
+    <body style="font-size:12pt;font-family:helvetica">
+
+        <p><center><h2>2.6 HSPA调度算法</h2></center></p>
+        
+        <p><h3>2.6.1 HSPA算法运行示例</h3></p>
+        <p>本章是对书中第八章微系统划分中部分算法进行实现。<br>
+            其中HSPA为书中<b>算法8_2 基于硬件实现增益的软硬件划分算法</b>的实现，<br>
+            HSPA_GA为书中<b>算法8_7 基于遗传算法的软硬件划分算法</b>的实现。<br>
+            HSPA_关键路径是一种基于关键路径的软硬件划分实现方法。<br>
+            由于在界面中操作流程相同，仅是在测试栏中选项不同，因此示例选择其中一种算法，即HSPA算法进行运行示例，具体步骤如下图所示：</p>
+        
+        <p><h4>步骤1：选择菜单栏->测试->HSPA算法</h4></p>
+        <center><img src="../images/2.6.1.png"  width="900"/></center><br>
+        <p><h4>步骤2：从文件导入->软硬件文件->HSPA->书上例子.txt</h4></p>
+        <center><img src="../images/2.6.2.png"  width="900"/></center><br>
+        <p><h4>步骤3:点击运行->得到运行结果视窗</h4></p>
+        <center><img src="../images/2.6.3.png"  width="900"/></center><br>
+        <p><h4>步骤4：运行甘特图生成，等待后得到调度甘特图</h4></p>
+        <center><img src="../images/2.6.4.png"  width="900"/></center><br>
+    
+
+        <p><h3>2.6.2 HSPA算法批量运行模式</h3></p>
+        <p>在步骤1中有批量运行选项，批量运行模式的目标是让调度算法运行多个调度文件，以此来得到算法平均性能。批量运行功能运行流程如下所示：</p>
+
+        <p><h4>步骤1：点击批量运行功能</h4></p>
+        <center><img src="../images/2.6.5.png"  width="900"/></center><br>
+        <p><h4>步骤2：选择软硬件文件->HSPA->RandomTask->TaskSet1文件夹</h4></p>
+        <center><img src="../images/2.6.6.png"  width="900"/></center><br>
+        <p><h4>步骤3：得到调度平均步长和调度平均用时</h4>
+            批量运行模式下，程序会连续执行所选中程序十次，并记录程序平均调度步长和平均完成调度所需花费的现实时间(Runtime)，通过运行相同的测试任务集和不同的算法，可以对不同的算法进行有效的评估。
+        </p>
+        <center><img src="../images/2.6.7.png"  width="900"/></center><br>
+
+        <p><h3>2.6.3 HSPA算法运行示例文件输入格式</h3></p>
+        <p>以<b>书中例子.txt</b>为例，<br>
+            第一行为<b>调度核心数</b>，<br>
+            第三行为<b>硬件数</b>，<br>
+            第五行为<b>任务数量</b>，<br>
+            第七行为<b>任务软执行时间</b>，<br>
+            第九行为<b>任务硬执行时间</b>，<br>
+            第十一行为<b>任务面积表</b>，<br>
+            第十三行为<b>任务面积约束</b>，<br>
+            第十五行开始为<b>任务通讯矩阵</b>
+        </p>
+        <p>输入示例5：HSPA算法输入示例</p>
+        <center><img src="../images/2.6.8.png"  width="900"/></center><br>
+
+
+    </body>
+</html>
+

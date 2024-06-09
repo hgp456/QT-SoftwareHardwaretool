@@ -5,6 +5,8 @@ cmake_policy(SET CMP0009 NEW)
 # _directory_contents at D:/Qt/6.7.1/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/*.c")
 set(OLD_GLOB
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/CMakeFiles/ShowIncludes/main.c"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_x86_windows_msvc2022_pe_64bit-Debug/CMakeFiles/ShowIncludes/main.c"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -42,6 +44,16 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/*.cpp")
 set(OLD_GLOB
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_5_15_17_MinGW_64_bit-Debug/CMakeFiles/3.28.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/CMakeFiles/3.28.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_haspacpresult.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_haspagaresult.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_hasparesult.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_klresult.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_mainwindow.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_mmmresult.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_mupparesult.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/DIG64O274K/moc_tasparesult.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/mocs_compilation.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/CMakeFiles/3.28.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/test_autogen/DIG64O274K/moc_haspacpresult.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/test_autogen/DIG64O274K/moc_haspagaresult.cpp"
@@ -62,6 +74,7 @@ set(OLD_GLOB
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Release/test_autogen/DIG64O274K/moc_mupparesult.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Release/test_autogen/DIG64O274K/moc_tasparesult.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Release/test_autogen/mocs_compilation.cpp"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_x86_windows_msvc2022_pe_64bit-Debug/CMakeFiles/3.28.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/source/TrfficSign.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/source/assistant.cpp"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/source/eshc.cpp"
@@ -105,6 +118,15 @@ endif()
 # _directory_contents at D:/Qt/6.7.1/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/*.h")
 set(OLD_GLOB
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/CMakeFiles/ShowIncludes/foo.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_haspacpresult.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_haspagaresult.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_hasparesult.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_klresult.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_mainwindow.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_mmmresult.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_mupparesult.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MSVC2019_64bit-Debug/test_autogen/include/ui_tasparesult.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/test_autogen/include/ui_haspacpresult.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/test_autogen/include/ui_haspagaresult.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/test_autogen/include/ui_hasparesult.h"
@@ -123,6 +145,7 @@ set(OLD_GLOB
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Release/test_autogen/include/ui_mupparesult.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Release/test_autogen/include/ui_tasparesult.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_Qt_6_7_1_MinGW_64_bit-Release/test_autogen/moc_predefs.h"
+  "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/build/Desktop_x86_windows_msvc2022_pe_64bit-Debug/CMakeFiles/ShowIncludes/foo.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/inc/TrafficSign.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/inc/assistant.h"
   "D:/workspace/qtworkspace/QT-SoftwareHardwaretool/inc/eshc.h"

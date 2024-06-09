@@ -3,7 +3,7 @@
     <assistant>
         <title>智能嵌入式系统课程工具帮助文档</title>
         <applicationIcon>images/logo.ico</applicationIcon>
-        <startPage>intro.html</startPage>
+        <startPage>html/1.Introduction.html</startPage>
         <aboutMenuText>
             <text>关于本文档</text>
         </aboutMenuText>
@@ -19,11 +19,11 @@
         <generate>
             <file>
                 <input>Tool.qhp</input>
-                <output>Tool.qch</output>
+                <output>Tool2.qch</output>
             </file>
         </generate>
         <register>
-            <file>Tool.qch</file>
+            <file>Tool2.qch</file>
         </register>
     </docFiles>
 </QHelpCollectionProject>

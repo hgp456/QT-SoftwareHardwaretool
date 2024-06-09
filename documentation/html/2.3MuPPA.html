@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>MuPPA算法</title>
+    </head>
+    <body style="font-size:12pt;font-family:helvetica">
+
+        <p><center><h2>2.3 MuPPA算法</h2></center></p>
+        
+        <p><h3>2.3.1 MuPPA算法运行示例</h3></p>
+        <p>MuPPA算法对应书中第六章多处理器系统调度算法，需要输入调度核心数，任务(数组)大小，任务执行时间，任务释放时间以及任务依赖关系矩阵，<br>输入方式与TaPSA算法相同，可以用手工输入也可以用文件导入，<br>下图将简要介绍操作流程和MuPPA算法运行结果：</p>
+        <p><h4>步骤1：选择测试->MuPPA->从文件导入</h4></p>
+        <center><img src="../images/2.3.1.png"  width="900"/></center><br>
+        <p><h4>步骤2：选择软硬件文件->MuPPA->课后作业1.txt</h4></p>
+        <center><img src="../images/2.3.2.png"  width="900"/></center><br>
+        <p><h4>步骤3：点击运行</h4></p>
+        <center><img src="../images/2.3.3.png"  width="900"/></center><br>
+        <p><h4>步骤4：得到输出结果</h4>
+        <br>此时可点击甘特图生成生成调度甘特图，等待后可到下图所示甘特图
+            </p>
+        <center><img src="../images/2.3.4.png"  width="900"/></center><br>
+        <p><h4>步骤5：甘特图生成</h4><br>步骤四中左侧第一行打印为任务的优先级信息，后续为任务分配情况，以及核心利用率;右侧为根据任务依赖矩阵生成的有向无环图。步骤五通过生成甘特图，对调度过程进行了更加细致的刻画。</p>
+        <center><img src="../images/2.3.5.png"  width="900"/></center><br>
+
+
+        <p><h3>2.3.2 MuPPA算法文件输入格式</h3></p>
+        <p>以课堂作业1.txt为例，下图显示了程序所能识别的输入格式，<br>
+            第一行为<b>核心数</b>，<br>
+            第三行为<b>任务个数</b>，<br>
+            第五行为<b>任务执行时间</b>，<br>
+            第七行为<b>任务释放时间</b>，<br>
+            第九行开始为<b>任务依赖矩阵</b>，<br>
+            数字之间由逗号隔开，如需添加自己的测试样例需按照该格式对程序进行输入
+        </p>
+        <p>输入示例2：MuPPA算法文件输入示例</p>
+        <center><img src="../images/2.3.6.png"  width="900"/></center>
+
+
+
+
+    </body>
+</html>
+
