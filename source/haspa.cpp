@@ -126,7 +126,8 @@ int haspa::constraint_calculation()
 
     for(int i=0;i<taskattribute.taskNum;i++)
     {
-        taskattribute.hardwaregainavg[i]=(float)taskattribute.hardawaregain[i]/taskattribute.hardwareArea[i];
+        taskattribute.hardwaregainavg[i]=(float)taskattribute.hardawaregain[i];
+         // taskattribute.hardwaregainavg[i]=(float)taskattribute.hardawaregain[i]/taskattribute.hardwareArea[i];
     }
 
     for(int j=0;j<taskattribute.taskNum;j++)

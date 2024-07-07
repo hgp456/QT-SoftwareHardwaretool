@@ -235,8 +235,7 @@ int KL::Run()
         A.clear();
         B.clear();
         G.clear();
-        // system("pause");
-    }while(maxG>0);
+
 
     qDebug() << "maxG:" << maxG;
     output1+= "maxG:" + QString::number(maxG) + '\n';
@@ -268,6 +267,46 @@ int KL::Run()
     }
     qDebug() <<"CommCost:" << Cab1;
     output1+= "CommCost: " + QString::number(Cab1) + '\n';
-    // system("pause");
+
+
+
+
+
+    }while(maxG>0);
+
+
+    qDebug() << "Final maxG:" << maxG;
+    output1+= "maxG:" + QString::number(maxG) + '\n';
+    output1+= "union1: ";
+    for(int i=0;i<union1.size();i++)
+    {
+        qDebug() <<"union1:" << char('a'+union1[i]);
+        output1+= QString(char('a'+union1[i]))+' ';
+    }
+    output1+= '\n';
+    output1+="union2: ";
+    for(int i=0;i<union2.size();i++)
+    {
+        qDebug() <<"union2:" << char('a'+union2[i]);
+        output1+= QString(char('a'+union2[i]))+' ';
+    }
+    output1+= '\n';
+
+    int Cab1=0;
+    for(int i=0;i<union1.size();i++)
+    {
+        int union1number=union1[i];
+        // cout <<"union1:" << union1[i] << endl;
+        for(int j=0;j<union2.size();j++)
+        {
+            int union2number=union2[j];
+            Cab1+=commCost[union1number][union2number];
+        }
+    }
+    qDebug() <<"CommCost:" << Cab1;
+    output1+= "CommCost: " + QString::number(Cab1) + '\n';
+
+
+
     return 0;
 }

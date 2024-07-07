@@ -5,7 +5,7 @@
 #include "cmath"
 //#include "unordered_map"
 std::vector<boost::dynamic_bitset<>> Group;
-
+std::vector<boost::dynamic_bitset<>> NewGroup;
 static bool fpgaIdle=true;
 static bool cpuIdle=true;
 static int squareused=0;
@@ -506,7 +506,28 @@ int hspa_ga::geneticAlgorithm()
 //        {
         float temp1=(float)(HardwareUseSituation[i]-taskattribute.areaConstraints)/taskattribute.areaConstraints;
         float temp2=(float)abs(HardwareUseSituation[i]-taskattribute.areaConstraints)/taskattribute.areaConstraints;
-        float fitnessTemp=1/( (0.7*pow(M_E,temp1)*temp2)+(0.3*(float)ScheduletimeResult[i]/taskattribute.softwaretimeSum) );
+
+        //2024_07_02测试
+        // float fitnessTemp=1.0/ScheduletimeResult[i];
+        float fitnessTemp;
+        //第一种设置  fitness只和调度长度有关 暂时不考虑面积
+        // fitnessTemp=taskattribute.softwaretimeSum-ScheduletimeResult[i];
+
+        //第二种设置  fitness当面积不满足时候 为-100
+        if(HardwareUseSituation[i]-taskattribute.areaConstraints>0)
+        {
+            fitnessTemp=-100;
+        }
+        else
+        {
+            fitnessTemp=taskattribute.softwaretimeSum-ScheduletimeResult[i];
+        }
+
+
+        // fitnessTemp=(float)(taskattribute.areaConstraints-HardwareUseSituation[i])/taskattribute.areaConstraints*(taskattribute.softwaretimeSum-ScheduletimeResult[i]);
+
+            // fitnessTemp=ScheduletimeResult[i]+HardwareUseSituation[i];
+        // fitnessTemp=1/( (0.7*pow(M_E,temp1)*temp2)+(0.3*(float)ScheduletimeResult[i]/taskattribute.softwaretimeSum) );
 //        qDebug() << HardwareUseSituation[i] << " " <<  taskattribute.areaConstraints <<  " " << temp1 <<  " " << temp2 << " " <<   fitnessTemp << " " << ScheduletimeResult[i] << " " << taskattribute.softwaretimeSum;
         fitnessUnion.push_back(fitnessTemp);
 //        }
@@ -517,12 +538,14 @@ int hspa_ga::geneticAlgorithm()
     ScheduletimeResult.clear();
     //此时开始计算适应度 fitness_calculation(),制造新的种群
 
+
     std::vector<GApair> data(2*taskattribute.taskNum);
     for(int i=0;i<data.size();i++)
     {
         data[i].fitness=fitnessUnion[i];
         data[i].group=Group[i];
     }
+    // std::sort(data.begin(), data.end(), GAcompare);
     fitnessUnion.clear();
     int gen1=0;
     int Gen=3*taskattribute.taskNum;
@@ -538,14 +561,15 @@ int hspa_ga::geneticAlgorithm()
     {
         Group.clear();
         std::sort(data.begin(), data.end(), GAcompare);
-
-        for(int i=0;i<taskattribute.taskNum/2;i++) //直接选择前1/4;
+        // NewGroup.clear();
+        for(int i=0;i<data.size()/2;i++) //直接选择前1/4;
         {
             Group.push_back(data[i].group);
+            // NewGroup.push_back(data[i].group);
         }
 
 
-        for(int i=taskattribute.taskNum/2;i<data.size();i++) //后3/4进行轮盘赌
+        for(int i=data.size()/2;i<data.size();i++) //后3/4进行轮盘赌
         {
             bool randomBit = dis(gen);
             if(randomBit>0.5)
@@ -555,7 +579,7 @@ int hspa_ga::geneticAlgorithm()
         }
 //        qDebug() << "Run here...";
 
-        while (Group.size() < taskattribute.taskNum * 2) {
+        while (Group.size() < data.size() ) {
 //            qDebug() << "Run here~";
             Group = crossover(Group,taskattribute.taskNum);
 //            qDebug() << "Run here!";
@@ -575,8 +599,11 @@ int hspa_ga::geneticAlgorithm()
         //进行变异
         Group = mutate(Group);
 
-
-
+        // for(int i=0;i<NewGroup.size();i++)
+        // {
+        //     Group.push_back(NewGroup[i]);
+        // }
+        // NewGroup.clear();
         //重新开始调度
 
         for(int i=0;i<Group.size();i++)
@@ -644,6 +671,8 @@ int hspa_ga::geneticAlgorithm()
         }
 
         //计算适应度
+        qDebug()<<"软件时长:"<<taskattribute.softwaretimeSum;
+
         for(int i=0;i<2*taskattribute.taskNum;i++)
         {
 //            if(HardwareUseSituation[i]>taskattribute.areaConstraints)
@@ -655,7 +684,26 @@ int hspa_ga::geneticAlgorithm()
 //            {
             float temp1=(float)(HardwareUseSituation[i]-taskattribute.areaConstraints)/taskattribute.areaConstraints;
             float temp2=(float)abs(HardwareUseSituation[i]-taskattribute.areaConstraints)/taskattribute.areaConstraints;
-            float fitnessTemp=1/( (0.7*pow(M_E,temp1)*temp2)+(0.3*(float)ScheduletimeResult[i]/taskattribute.softwaretimeSum) );
+            //2024_07_02测试
+            float fitnessTemp;
+            //第一种情况
+
+            // fitnessTemp=taskattribute.softwaretimeSum-ScheduletimeResult[i];
+
+
+            //第二种设置  fitness当面积不满足时候 为-100
+            if(HardwareUseSituation[i]-taskattribute.areaConstraints>0)
+            {
+                fitnessTemp=-100;
+            }
+            else
+            {
+                fitnessTemp=taskattribute.softwaretimeSum-ScheduletimeResult[i];
+            }
+
+            // fitnessTemp=(float)(taskattribute.areaConstraints-HardwareUseSituation[i])/taskattribute.areaConstraints*(taskattribute.softwaretimeSum-ScheduletimeResult[i]);
+            // fitnessTemp=1/( (0.7*pow(M_E,temp1)*temp2)+(0.3*(float)ScheduletimeResult[i]/taskattribute.softwaretimeSum) );
+             // fitnessTemp=1/( HardwareUseSituation[i])+((float)ScheduletimeResult[i]/taskattribute.softwaretimeSum) );
 //            qDebug() << HardwareUseSituation[i] << " " <<  taskattribute.areaConstraints <<  " " << temp1 <<  " " << temp2 << " " <<   fitnessTemp << " " << ScheduletimeResult[i] << " " << taskattribute.softwaretimeSum;
             fitnessUnion.push_back(fitnessTemp);
 //            qDebug() <<temp1 << " " << temp2 << " " <<fitnessTemp;
@@ -667,7 +715,7 @@ int hspa_ga::geneticAlgorithm()
         ScheduletimeResult.clear();
         //此时开始计算适应度 fitness_calculation(),制造新的种群
 
-        std::vector<GApair> data(2*taskattribute.taskNum);
+        // std::vector<GApair> data(2*taskattribute.taskNum);
         for(int i=0;i<data.size();i++)
         {
             data[i].fitness=fitnessUnion[i];
@@ -686,8 +734,8 @@ int hspa_ga::geneticAlgorithm()
     for (int k = 0; k < data[0].group.size(); k++) {
         test += std::to_string(data[0].group[k]) + " ";
     }
-    qDebug() << test;
-    qDebug() << data[0].fitness;
+    output+= "The value of beta:" + test + "\n" ;
+    output+= "The Fitness of beta:" + QString::number(data[0].fitness) + "\n" ;
 
     for(int j=0;j<data[0].group.size();j++)
     {
@@ -799,6 +847,7 @@ int hspa_ga::GeneAlpha()
     {
         auto maxPosition = max_element(taskattribute.hardawaregain.begin(), taskattribute.hardawaregain.end());
         int maxposition=maxPosition-taskattribute.hardawaregain.begin();
+        qDebug() << "MaxPosition:" << maxposition;
         bool optimise=false;
         if(squreUsed+taskattribute.hardwareArea[maxposition]<=taskattribute.areaConstraints)
         {
@@ -822,11 +871,11 @@ int hspa_ga::GeneAlpha()
         }
     }
     Group.push_back(variables);
-//    QString test;
-//    for (int i = 0; i < variables.size(); i++) {
-//        test += std::to_string(variables[i]) + " ";
-//    }
-//    qDebug() << test;
+   QString test;
+   for (int i = 0; i < variables.size(); i++) {
+       test += std::to_string(variables[i]) + " ";
+   }
+   qDebug() <<  "alpha " <<test;
     return 0;
 }
 

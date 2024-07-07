@@ -57,8 +57,12 @@ void MuppaResult::showEvent(QShowEvent *event) {
     // Run the dot command to generate the graph
     QProcess process;
     //用于打包程序
-//     process.setProgram("Graphviz/bin/dot.exe");
-     process.setProgram("dot.exe");
+    #ifdef PACKAGE
+        process.setProgram("Graphviz/bin/dot.exe");
+    #else
+        process.setProgram("dot.exe");
+    #endif
+
     QStringList arguments;
     arguments << "-Tsvg" << "graph.dot" << "-o" << "graph.svg";
     process.setArguments(arguments);
@@ -137,8 +141,13 @@ void MuppaResult::on_pushButton_5_clicked()
 
 void MuppaResult::on_pushButton_6_clicked()
 {
+    #ifdef PACKAGE
+        QProcess::execute("test_ori.exe");
+    #else
+        QProcess::startDetached("python", QStringList() << "test.py");
+    #endif
 
-     QProcess::startDetached("python", QStringList() << "test.py");
-//     QProcess::execute("test_ori.exe"); // 用于打包版本
+//      QProcess::startDetached("python", QStringList() << "test.py");
+// //     QProcess::execute("test_ori.exe"); // 用于打包版本
 }
 

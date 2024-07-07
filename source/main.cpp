@@ -5,13 +5,12 @@
 #include <QTranslator>
 #include <QFile>
 #include <QIcon>
+//这个适用于打包的标志位 如果是编译程序无需打开
+// #define PACKAGE
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    // QIcon /*icon*/(":/images/icon.ico");
-
-    // QApplication::setWindowIcon(icon);
 
     QFile qssFile("D:/workspace/QT-SoftwareHardwaretool/QSS/Ubuntu.qss");//1.
     if(qssFile.open(QFile::ReadOnly)){//2.

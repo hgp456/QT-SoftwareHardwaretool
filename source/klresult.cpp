@@ -138,10 +138,15 @@ void KLResult::showEvent(QShowEvent *event) {
     dotFile.close();
 
     //    // Run the dot command to generate the graph
-    QProcess process;
-    //用于打包程序
-//    process.setProgram("Graphviz/bin/dot.exe");
-     process.setProgram("dot.exe");
+        QProcess process;
+        //用于打包程序
+    //    process.setProgram("Graphviz/bin/dot.exe");
+    #ifdef PACKAGE
+        process.setProgram("Graphviz/bin/dot.exe");
+    #else
+        process.setProgram("dot.exe");
+    #endif
+
     QStringList arguments;
     arguments << "-Tsvg" << "graph.dot" << "-o" << "graph.svg";
     process.setArguments(arguments);

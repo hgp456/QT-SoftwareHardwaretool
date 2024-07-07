@@ -71,7 +71,7 @@ void MainWindow::on_actionMuppa_triggered()
 
 void MainWindow::on_actionTaspa1_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(8);
+    ui->stackedWidget->setCurrentWidget(ui->MMM);
 }
 
 void MainWindow::on_action_triggered()

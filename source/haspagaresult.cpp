@@ -68,7 +68,12 @@ void haspagaresult::showEvent(QShowEvent *event) {
     QProcess process;
     //用于打包程序
 //    process.setProgram("Graphviz/bin/dot.exe");
-     process.setProgram("dot.exe");
+    #ifdef PACKAGE
+        process.setProgram("Graphviz/bin/dot.exe");
+    #else
+        process.setProgram("dot.exe");
+    #endif
+
     QStringList arguments;
     arguments << "-Tsvg" << "graph.dot" << "-o" << "graph.svg";
     process.setArguments(arguments);
@@ -138,9 +143,10 @@ void haspagaresult::on_pushButton_4_clicked()
 
 void haspagaresult::on_pushButton_3_clicked()
 {
-    QProcess::startDetached("python", QStringList() << "test_hspa.py");
-    // 用于打包版本
-//      QProcess::execute("test_hspa.exe");
-//     QProcess::startDetached("start test_hspa.exe");
+    #ifdef PACKAGE
+        QProcess::execute("test_hspa.exe");
+    #else
+         QProcess::startDetached("python", QStringList() << "test_hspa.py");
+    #endif
 }
 

@@ -220,7 +220,7 @@ QString Taspa::order_print()
         {
             if(task[j].order==i)
             {
-                output += QString("T%1 %2 ").arg(task[j].num).arg(task[j].order);
+                output += QString("T%1 %2 ").arg(task[j].num).arg(Opri[j]);
 
                 tasktable.push_back(task[j]);
             }
